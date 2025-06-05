@@ -1,4 +1,5 @@
 #pragma once
+#include <iostream>
 #include "OutOfIndexException.h"
 
 template<class T>
@@ -46,10 +47,11 @@ public:
 
 	T& operator[](size_t index);
 
-	/*获得该位置的值*/
-	//T ArrayGetById(int n);
+	//获得该位置的值
+	T ArrayGetById(int n);
+
 	//修改指定索引的值
-	//void ChangeValue(int index,T value);
+	void ChangeValue(int index,T value);
 
 private:
 	int len;
@@ -155,12 +157,14 @@ void Array<T>::InsertBefore(T val)
 {
 	this->len++;
 	T* tem = (T*)malloc(sizeof(T) * (static_cast<unsigned long long>(this->len) + 2));
-	tem[0] = val;
-	for (int i = 1; i < this->len; i++)
-	{
-		tem[i] = this->arr[i - 1];
+	if (tem != NULL) {
+		tem[0] = val;
+		for (int i = 1; i < this->len; i++)
+		{
+			tem[i] = this->arr[i - 1];
+		}
+		this->arr = tem;
 	}
-	this->arr = tem;
 }
 
 /*尾插*/
@@ -251,15 +255,16 @@ void Array<T>::ReverseArray()
 	}
 }
 
-///*获得该位置的值*/
-//template<class T>
-//T Array<T>::ArrayGetById(int n)
-//{
-//	if (this->arr == NULL || this->len < n + 1) return INT_MIN;
-//	return this->arr[n];
-//}
-////修改指定索引的值
-//template<class T>
-//void Array<T>::ChangeValue(int index, T value) {
-//	this->arr[index] = value;
-//}
+/*获得该位置的值*/
+template<class T>
+T Array<T>::ArrayGetById(int n)
+{
+	if (this->arr == NULL || this->len < n + 1) return INT_MIN;
+	return this->arr[n];
+}
+
+//修改指定索引的值
+template<class T>
+void Array<T>::ChangeValue(int index, T value) {
+	this->arr[index] = value;
+}
