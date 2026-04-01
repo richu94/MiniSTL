@@ -73,24 +73,3 @@ int binary_search_recursion(Array<T>* arr,int left,int right , T key) {
 		binary_search_recursion(arr, mid + 1, right, key);
 	}
 }
-
-int main() {
-	//Array<int>* arr = new Array<int>(10,0);
-	//for (int i = 0; i <= 9; i++) {
-	//	arr->ChangeValue(i, i);
-	//}
-	//int res = binary_search(arr,11);
-	//printf("%d", res);
-
-	//int left = 0, right = arr->GetLength() - 1;
-	//int res = binary_search_recursion(arr, left, right, 4);
-	//printf("%d", res);
-
-	Array<int> array(10, 0);
-	for (int i = 0; i <= 9; i++) {
-		array[i] = i;
-	}
-	int res = binary_search(array, 6);
-	printf("%d", res);
-	return 0;
-}
